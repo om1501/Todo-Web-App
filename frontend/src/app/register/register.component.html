@@ -1,0 +1,119 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0 rounded-3 modern-form">
+        <div class="card-body p-4">
+          <h3 class="text-center mb-4 fw-bold text-primary">Register</h3>
+
+          <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                formControlName="username"
+                placeholder="Enter username"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('username')?.invalid &&
+                  registerForm.get('username')?.touched
+                "
+                class="text-danger small mt-1"
+              >
+                Username is required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="Enter email"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('email')?.invalid &&
+                  registerForm.get('email')?.touched
+                "
+                class="text-danger small mt-1"
+              >
+                Enter a valid email
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Enter password"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('password')?.invalid &&
+                  registerForm.get('password')?.touched
+                "
+                class="text-danger small mt-1"
+              >
+                Password is required
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="reEnterPassword" class="form-label"
+                >Enter Password Again</label
+              >
+              <input
+                type="password"
+                id="reEnterPassword"
+                class="form-control"
+                formControlName="reEnterPassword"
+                placeholder="Enter Password Again"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('reEnterPassword')?.invalid &&
+                  registerForm.get('reEnterPassword')?.touched
+                "
+                class="text-danger small mt-1"
+              >
+                Password is required
+              </div>
+              <div
+                *ngIf="
+      registerForm.errors?.['passwordMismatch'] &&
+      registerForm.get('reEnterPassword')?.touched
+    "
+                class="text-danger small mt-1"
+              >
+                Passwords do not match
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg rounded-pill shadow-sm"
+                [disabled]="!registerForm.valid"
+              >
+                Register
+              </button>
+            </div>
+            <div>
+              <a routerLink="/login">Alredy Registered? Back To Login</a>
+            </div>
+            <div class="text-center mt-3">
+              <h5 class="text-success">{{ message }}</h5>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
