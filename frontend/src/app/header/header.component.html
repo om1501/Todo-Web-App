@@ -1,0 +1,47 @@
+<header class="header">
+  <div class="header-left">
+    <div class="logo">🌐 MyApp</div>
+  </div>
+
+  <nav class="nav">
+    <a routerLink="/welcome/Shadow" routerLinkActive="active">Home</a>
+    <a routerLink="/about" routerLinkActive="active">About</a>
+    <a routerLink="/contact" routerLinkActive="active">Contact</a>
+  </nav>
+
+  <div class="header-right">
+    <!-- Profile Dropdown -->
+    <div class="profile-menu" (click)="toggleDropdown()">
+      <div class="profile-circle">{{ usernameInitial }}</div>
+      <div class="dropdown" *ngIf="dropdownOpen">
+        <a routerLink="/profile"><i class="fas fa-user"></i> My Profile</a>
+        <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+
+    <!-- Hamburger for mobile -->
+    <div class="hamburger" (click)="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-nav" *ngIf="mobileMenuOpen">
+  <a
+    routerLink="/welcome/Shadow"
+    routerLinkActive="active"
+    (click)="closeMobileMenu()"
+    >Home</a
+  >
+  <a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()"
+    >About</a
+  >
+  <a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()"
+    >Contact</a
+  >
+  <a routerLink="/profile" (click)="closeMobileMenu()">My Profile</a>
+  <a (click)="logout(); closeMobileMenu()">Logout</a>
+</nav>
